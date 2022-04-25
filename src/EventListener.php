@@ -38,22 +38,11 @@ class EventListener implements Listener{
 	){
 	}
 
-
-	public function onSignChange(SignChangeEvent $event){
-		$oldText = $event->getOldText();
-		$newText = $event->getNewText();
-		for($i=0; $i<SignText::LINE_COUNT; ++$i){
-			if($oldText->getLine($i) !== $newText->getLine($i))
-				return;
-		}
-		$this->onEndSignEdit($event);
-	}
-
 	/**
 	 * @notHandler
 	 * @param SignChangeEvent $event
 	 */
-	public function onEndSignEdit(SignChangeEvent $event){
+	public function onSignChange(SignChangeEvent $event){
 		$signBlock = $event->getSign();
 		$player = $event->getPlayer();
 		if(!$signBlock instanceof WallSign){
